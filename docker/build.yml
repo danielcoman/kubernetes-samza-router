@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+
+# samza_container_base
+  samza-hello:
+    build:
+      context: ./image
+      dockerfile: ./Dockerfile.hello
+    image: same-hello
+
+# samza_container_base
+  samza-router:
+    build:
+      context: ./image
+      dockerfile: ./Dockerfile.router
+    image: samza-router
+
+
+# samza_container_base
+  samza-interrogator:
+    build:
+      context: ./image
+      dockerfile: ./Dockerfile.py
+    image: samza-interrogator

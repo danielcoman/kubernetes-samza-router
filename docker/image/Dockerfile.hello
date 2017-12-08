@@ -1,0 +1,15 @@
+FROM openjdk:8-jre-alpine
+
+RUN apk --update add tar bash libstdc++ bind-tools && \
+    mkdir -p /samza/state /samza/log && \
+    rm -rf /tmp/* /var/cache/apk/*
+
+COPY hello-samza.tgz /
+RUN tar -zxf hello-samza.tgz -C / && \
+        rm -f hello-samza.tgz
+
+# Run script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]
