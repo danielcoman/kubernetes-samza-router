@@ -31,13 +31,17 @@ kubectl apply -f ./kafka-replica
 3.1 Clone samza_router_service
 https://github.com/danielcoman/samza_router_service
 
-3.2 Build the docker image
-In the repo folder copy the samza router code/bin/scripts in the deploy/samza folder
-Add or your own or use the config from config-example folder
+3.2 Prepare bin
 
+In the repo folder copy the samza router folder.
+Add or your own or use the config from config-example folder.
+tar -cvzf ./docker/image/router.tgz samza
+Don't use nesting folders for samza router app (ex: deploy/samza/...)
+
+3.3 Build the docker image
 docker-compose -f ./docker/build.yml build  
 
-3.3 Deploy Router Service
+3.4 Deploy Router Service
 kubectl apply -f ./router_service
 
 4. Profit
