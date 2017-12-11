@@ -7,12 +7,12 @@ Samza router Kubernetes Service
 1.1 Install
 
 brew cask install minikube
-Install docker-machine-driver-xhyve:
-https://gist.github.com/codesword/423d80ea29849410dcc97c3542450955
+Install Hyperkit driver:
+https://github.com/kubernetes/minikube/blob/master/docs/drivers.md#hyperkit-driver
 
 1.2 Start minikube
 ```
-minikube start --vm-driver=xhyve --cpus 4 --memory 8192
+minikube start --vm-driver=hyperkit --cpus 4 --memory 8192 --insecure-registry
 minikube dashboard
 ```
 
@@ -44,7 +44,7 @@ Add or your own or use the config from config-example folder.
 ```
 tar -cvzf ./docker/image/router.tgz samza
 ```
-Don't use nesting folders for samza router app (ex: deploy/samza/...)
+Don't use nesting folders for samza router app tgz (ex: deploy/samza/...)
 
 3.3 Build the docker image
 ```
@@ -60,7 +60,14 @@ kubectl apply -f ./router_service
 
 ```
 kubectl get po --all-namespaces
-
+```
+Source:
+```
 kubectl exec -it kafka-0   /bin/bash  -n kafka-source
+./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic thc-test
+```
+Destination:
+```
 kubectl exec -it kafka-0   /bin/bash  -n kafka-destination
+./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic thc-test
 ```
