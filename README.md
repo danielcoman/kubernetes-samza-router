@@ -1,4 +1,4 @@
-# samza_router_service
+# kubernetes-samza-router
 Samza router Kubernetes Service
 
 
@@ -34,8 +34,8 @@ kubectl apply -f ./kafka-replica
 
 ## 3 Setup Router Service
 
-3.1 Clone samza_router_service
-https://github.com/danielcoman/samza_router_service
+3.1 Clone skubernetes-samza-router
+https://github.com/danielcoman/kubernetes-samza-router
 
 3.2 Prepare bin
 
